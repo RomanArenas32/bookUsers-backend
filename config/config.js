@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-
+const openUri = process.env.MONGO_CONNECT
+console.log(openUri)
 
 const dbConnection = async () => {
 
 
     try {
-        await mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
+        await mongoose.connect(openUri, { useNewUrlParser: true, useUnifiedTopology: true })
         console.log("Base de datos online")
 
     } catch (error) {
