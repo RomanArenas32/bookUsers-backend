@@ -1,10 +1,12 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-const dbUri = `mongodb+srv://userslearn065:Yc5DXNvuxd3HsnLI@learnusers.xmztbvp.mongodb.net/books`
+
+
 const dbConnection = async () => {
 
 
     try {
-        await mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
+        await mongoose.connect(MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
         console.log("Base de datos online")
 
     } catch (error) {
