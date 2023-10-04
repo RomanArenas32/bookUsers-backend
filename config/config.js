@@ -1,12 +1,13 @@
-require('dotenv').config();
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 
 
 const dbConnection = async () => {
 
 
     try {
-        await mongoose.connect(MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
+        await mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
         console.log("Base de datos online")
 
     } catch (error) {
