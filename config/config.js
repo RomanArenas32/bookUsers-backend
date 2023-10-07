@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const openUri = process.env.MONGO_CONNECT
-console.log(openUri)
+
 
 const dbConnection = async () => {
 
