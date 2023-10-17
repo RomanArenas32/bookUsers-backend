@@ -9,7 +9,7 @@ const dbConnection = async () => {
 
     try {
         await mongoose.connect(openUri, { useNewUrlParser: true, useUnifiedTopology: true })
-        console.log("Base de datos online")
+        console.log("Base de datos ONLINE")
 
     } catch (error) {
         console.error('Error al conectar con la base de datos:', error);
