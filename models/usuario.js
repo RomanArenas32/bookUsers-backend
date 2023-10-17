@@ -13,14 +13,14 @@ const UsuarioShema = Schema({
     },
     correo: {
         type: String,
-        required: [true, 'El correo es obligatorio'],
+        required: [true, 'El email es obligatorio'],
         unique: true
     },
     password: {
         type: String,
         required: [true, 'La contraseña es obligatorio'],
     },
-    password: {
+    rol: {
         type: String,
         required: true,
         enum: ['ADMIN_ROLE', 'USER_ROLE']
