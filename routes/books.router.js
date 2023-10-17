@@ -7,14 +7,16 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 const { obtenerLibros,
     borrarLibro,
-    registrarLibro } = require('../controllers/books.controllers');
+    registrarLibro,
+    obtenerLibrosPorNombre
+} = require('../controllers/books.controllers');
 
 const router = Router();
 
 
 router.get('/', obtenerLibros);
 
-
+router.get('/search', obtenerLibrosPorNombre);
 
 router.post('/', [
     check('titulo', 'El titulo es obligatorio').not().isEmpty(),
