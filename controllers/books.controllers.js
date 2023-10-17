@@ -21,9 +21,9 @@ const registrarLibro = async (req, res) => {
 
     const { titulo, sinopsis, urlFoto, urlDescarga } = req.body;
 
-    const book = new Book({ titulo, sinopsis, urlFoto, urlDescarga  });
+    const book = new Book({ titulo, sinopsis, urlFoto, urlDescarga });
 
-    
+
     //grabar el libro
     await book.save()
 
@@ -34,19 +34,31 @@ const registrarLibro = async (req, res) => {
 
 
 
-const borrarLibro = async(req, res) => {
-const  {id} = req.params;
+const borrarLibro = async (req, res) => {
+    const { id } = req.params;
 
-const book = await Book.findByIdAndDelete(id);
+    const book = await Book.findByIdAndDelete(id);
     res.status(200).json({
         book,
     });
 }
 
+const obtenerLibrosPorNombre = async (req, res) => {
+    try {
+      const keyword = req.query.keyword;
+      const results = await Book.find({ titulo: { $regex: keyword, $options: 'i' } });
+  
+      res.json(results);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al buscar libros.' });
+    }
+  };
 
 module.exports = {
     obtenerLibros,
     registrarLibro,
     borrarLibro,
-    
+    obtenerLibrosPorNombre
+
 }
