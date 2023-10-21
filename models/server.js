@@ -9,6 +9,7 @@ class Server {
         this.PORT = process.env.PORT;
         this.pathUsuarios = '/api/usuarios';
         this.pathLibros = '/api/libros';
+        this.pathAuth = '/api/auth';
         //conexion a la base de datos
         this.conectarDB();
 
@@ -19,7 +20,7 @@ class Server {
         this.routes();
     }
 
-    async conectarDB(){
+    async conectarDB() {
         await dbConnection();
     }
 
@@ -33,8 +34,9 @@ class Server {
     }
 
     routes() {
-       this.app.use(this.pathUsuarios, require('../routes/usuarios.router'));
-       this.app.use(this.pathLibros, require('../routes/books.router'));
+        this.app.use(this.pathAuth, require('../routes/auth.router'));
+        this.app.use(this.pathUsuarios, require('../routes/usuarios.router'));
+        this.app.use(this.pathLibros, require('../routes/books.router'));
     }
 
 

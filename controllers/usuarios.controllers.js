@@ -10,7 +10,6 @@ const obtenerUsuarios = async (req, res) => {
         .limit(Number(limit));
 
     const total = await Usuario.countDocuments({estado: true});
-    console.log(total)
     res.status(200).json({
         total,
         usuarios
@@ -61,11 +60,22 @@ const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
     });
 }
 
+const obtenerUsuarioPorNombre = async (req, res) => {
+    try {
+      const keyword = req.query.keyword;
+      const results = await Usuario.find({ nombre: { $regex: keyword, $options: 'i' } });
+  
+      res.json(results);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al buscar el usuario.' });
+    }
+  };
 
 module.exports = {
     obtenerUsuarios,
     registrarUsuario,
     actualizarUsuario,
     borrarUsuario,
-    
+    obtenerUsuarioPorNombre
 }
