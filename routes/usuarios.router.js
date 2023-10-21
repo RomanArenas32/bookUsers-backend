@@ -9,12 +9,17 @@ const { esRoleValido, emailExiste, existeUsuarioPorId } = require('../helpers/db
 const { obtenerUsuarios,
     actualizarUsuario,
     borrarUsuario,
-    registrarUsuario } = require('../controllers/usuarios.controllers');
+    registrarUsuario,
+    obtenerUsuarioPorNombre
+} = require('../controllers/usuarios.controllers');
 
 const router = Router();
 
 
 router.get('/', obtenerUsuarios);
+
+router.get('/search', obtenerUsuarioPorNombre);
+
 
 router.put('/:id', [
     check('id', 'No es un ID válido').isMongoId(),
