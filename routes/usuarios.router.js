@@ -12,6 +12,7 @@ const { obtenerUsuarios,
     registrarUsuario,
     obtenerUsuarioPorNombre
 } = require('../controllers/usuarios.controllers');
+const validarToken = require('../middlewares/validarToken');
 
 const router = Router();
 
@@ -39,6 +40,7 @@ router.post('/', [
 ], registrarUsuario);
 
 router.delete('/:id', [
+    validarToken,
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom(existeUsuarioPorId),
     validarCampos

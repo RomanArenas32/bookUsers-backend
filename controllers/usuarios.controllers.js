@@ -54,9 +54,11 @@ const actualizarUsuario = async (req, res) => {
 const borrarUsuario = async(req, res) => {
 const  {id} = req.params;
 
+
 const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
     res.status(200).json({
         usuario
+      
     });
 }
 

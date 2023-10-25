@@ -1,7 +1,7 @@
 const {model, Schema} = require('mongoose');
 
 
-const UsuarioShema = Schema({
+const UsuarioSchema = Schema({
     nombre: {
         type: String,
         required: [true, 'El nombre es obligatorio'],
@@ -32,8 +32,11 @@ const UsuarioShema = Schema({
 });
 
 
+UsuarioSchema.methods.toJSON = function() {
+    const { __v, password, _id, ...usuario  } = this.toObject();
+    usuario.uid = _id;
+    return usuario;
+}
 
 
-
-
-module.exports = model('Usuarios', UsuarioShema);
+module.exports = model('Usuarios', UsuarioSchema);
